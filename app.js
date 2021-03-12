@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var postRouter = require('./routes/post');
 var bodyParser = require("body-parser");
+var cors = require ('cors');
 
 
 var app = express();
@@ -36,6 +37,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(cors());
+app.use(bodyParser.json({limit: '50mg'}));
+app.use(bodyParser.urlencoded({limit: '50mg', extended: true}));
 
 mongoose.connect('process.env.DB_URI', { useNewUrlParser: true })
     .then(() =>  console.log('mymerndb connection successful'))
