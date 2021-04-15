@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/post', postRouter);
+app.use('/posts', postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,7 +40,7 @@ app.use(cors());
 app.use(bodyParser.json({limit: '50mg'}));
 app.use(bodyParser.urlencoded({limit: '50mg', extended: true}));
 
-mongoose.connect('process.env.DB_URI', { useNewUrlParser: true })
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true })
     .then(() =>  console.log('mymerndb connection successful'))
     .catch((err) => console.error(err));
 
